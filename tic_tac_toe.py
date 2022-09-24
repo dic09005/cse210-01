@@ -25,7 +25,35 @@ def main():
     complete = False
     turn = 0
     last_turn = -1
+
     
+
+    def whos_turn(turn):
+        if turn % 2 == 0: return 'O'
+        else:
+            return 'X'
+
+    def winner(marks):
+        # Check the horizontal
+        if (marks[1] == marks[2] == marks[3]) \
+            or (marks[4] == marks[5] == marks[6]) \
+            or (marks[7] == marks[8] == marks[9]):
+            return True
+        elif (marks[1] == marks[4] == marks[7]) \
+            or (marks[2] == marks[5] == marks[8]) \
+            or (marks[3] == marks[6] == marks[9]):
+            return True
+        elif (marks[1] == marks[5] == marks[9]) \
+            or (marks[7] == marks[5] == marks[3]):
+            return True
+        else: return False
+    
+    def makeboard(marks):
+        board = (f"|{marks[1]}|{marks[2]}|{marks[3]}|\n"
+                    f"|{marks[4]}|{marks[5]}|{marks[6]}|\n"
+                    f"|{marks[7]}|{marks[8]}|{marks[9]}|")
+        print(board)
+
     while playing:
         # Keep the screen clean
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -57,32 +85,6 @@ def main():
         if whos_turn(turn) == 'X': print('Player 1 Wins!')
         else: print('Player 2 Wins!')
     else: print('Tie Game!')   
-
-    def makeboard(marks):
-        board = (f"|{marks[1]}|{marks[2]}|{marks[3]}|\n"
-                    f"|{marks[4]}|{marks[5]}|{marks[6]}|\n"
-                    f"|{marks[7]}|{marks[8]}|{marks[9]}|")
-        print(board)
-
-    def whos_turn(turn):
-        if turn % 2 == 0: return 'O'
-        else:
-            return 'X'
-
-    def winner(marks):
-        # Check the horizontal
-        if (marks[1] == marks[2] == marks[3]) \
-            or (marks[4] == marks[5] == marks[6]) \
-            or (marks[7] == marks[8] == marks[9]):
-            return True
-        elif (marks[1] == marks[4] == marks[7]) \
-            or (marks[2] == marks[5] == marks[8]) \
-            or (marks[3] == marks[6] == marks[9]):
-            return True
-        elif (marks[1] == marks[5] == marks[9]) \
-            or (marks[7] == marks[5] == marks[3]):
-            return True
-        else: return False
 
 if __name__ == "__main__":
     main()
